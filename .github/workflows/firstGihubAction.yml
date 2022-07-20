@@ -19,6 +19,7 @@ jobs:
           shell: python
   run-windows-commands:
     runs-on: windows-latest
+    needs: ["run-shell-command"]  #needs: used to allocate which job runs first. The job with the needs key only runs when the jobs in the array [] is done running
     steps:
       - name: Directory PowerShell
         run: Get-Location
