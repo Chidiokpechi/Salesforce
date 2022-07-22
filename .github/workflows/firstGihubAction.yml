@@ -1,0 +1,28 @@
+name: Shell Commands
+
+on: [push]
+
+jobs:
+  run-shell-command:
+    runs-on: ubuntu-latest
+    steps:
+        - name: echo a string
+          run: echo "Hello Github Action World"
+        - name: multipleline script
+          run: |
+            node -v
+            npm -v
+        - name: python Command
+          run: |
+            import platform
+            print(platform.processor())
+          shell: python
+  run-windows-commands:
+    runs-on: windows-latest
+    needs: ["run-shell-command"]  #needs: used to allocate which job runs first. The job with the needs key only runs when the jobs in the array [] is done running
+    steps:
+      - name: Directory PowerShell
+        run: Get-Location
+      - name: Directory Bash
+        run: pwd
+        shell: bash
