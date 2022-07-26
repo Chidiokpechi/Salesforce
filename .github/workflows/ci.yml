@@ -1,6 +1,7 @@
 name: CI
 on: [push, pull_request]
-
+env: 
+  EV_secret: ${{ secret.TESTING_SECRET }}
 jobs:
     build:
         name: Run Script
@@ -8,5 +9,5 @@ jobs:
         steps:
           - uses: actions/checkout@v1
           - name: Script
-            run: ./.github/scripts/script.ps1
+            run: .\.github\scripts\script.ps1
             shell: pwsh
